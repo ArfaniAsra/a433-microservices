@@ -1,19 +1,19 @@
-version: "3.7"
+version: "3.7"    # menggunakan versi 2 atau lebih
 
 services:
-
+  # terdiri atas 2 buah services
   item-app:
-    image: ghcr.io/arfaniasra/a433-microservices/item-app:v1
+    image: ghcr.io/arfaniasra/a433-microservices/item-app:v1  # menggunakan image item-app dari GitHub Packages
     ports:
-      - "80:8080"
-    restart: "always"
+      - "80:8080"   # port 80 di host
+    restart: "always"   # menerapkan restart policy
     depends_on:
-      - item-db
+      - item-db     # memastikan item-app hanya berjalan setelah item-db diluncurkan
 
   item-db:
-    image: mongo:3
+    image: mongo:3    # menggunakan mongo:3
     volumes:
-      - app-db:/data/db
+      - app-db:/data/db   # menggunakan target /data/db
 
 volumes:
-  app-db:
+  app-db:   # memiliki 1 volume bernama app-db
